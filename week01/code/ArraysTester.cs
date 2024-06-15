@@ -35,11 +35,20 @@ public static class ArraysTester {
     private static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        
+            
+        // Plan: 
+        // 1. first, i'll create an array to store the multiples that will be generated. 
+        // 2. i'll create a loop to calculate each multiple starting from number 
+        // 3. Return the array of generated multiples.
 
-        return new double[0]; // replace this return statement with your own
+        double[] result = new double[length];
+        
+        for (int i = 0; i < length; i++) {
+            result[i] = number * (i + 1);
+        }
+        
+        return result;
     }
     
     /// <summary>
@@ -52,10 +61,31 @@ public static class ArraysTester {
     /// </summary>
     private static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. first, i'll  find the real rotation amount by using modulud to adjust the rotation amount ====== amount % data.Count.
+        // 2. important, check If amount is 0, if it is, return 0
+        // 3. Cut the list into two parts and recombine them in the rotated order, ill first put the last part in front of the first part.
+        // 4. lastly, update the original list with the rotated list.
+        
+        int n = data.Count;
+        amount = amount % n; // step 1
 
+        // step 2
+        if (amount == 0) return;
+
+        //Step 3
+        List<int> rotatedList = new List<int>();
+
+        for (int i = n - amount; i < n; i++) {
+            rotatedList.Add(data[i]);
+        }
+        for (int i = 0; i < n - amount; i++) {
+            rotatedList.Add(data[i]);
+        }
+
+        // step 4
+        for (int i = 0; i < n; i++) {
+            data[i] = rotatedList[i];
+        }
     }
 }
