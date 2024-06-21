@@ -15,7 +15,10 @@
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: It doesn't follow the expected sequence as outlined in the Expected Results, 
+        // fixed it by dequeuing each person, printing their name, and 
+        // re-enqueueing them at the end of the queue with decremented turns (unless they have infinite turns), the proper 
+        //order is maintained through the queue's FIFO property.
 
         Console.WriteLine("---------");
 
@@ -38,7 +41,7 @@
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: i think its the same with test 1 and adding George does not follow the expecteed order
 
         Console.WriteLine("---------");
 
@@ -56,7 +59,8 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: Test case 1 problem flows into test case 3, but there's more, Tim has an infinite turns which is equal to zero
+        // initially the code wasn't handling infinite turns, this made the queue to be emptied premarturely.
 
         Console.WriteLine("---------");
 
@@ -73,7 +77,8 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: Test case 1 problem is found here as well plus Tim had an infinite turn less than 0, handled this the same way i handled 
+        // test 3
 
         Console.WriteLine("---------");
 
@@ -83,6 +88,6 @@
         Console.WriteLine("Test 5");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found: None.
     }
 }

@@ -7,17 +7,19 @@
 /// less than they will stay in the queue forever.  If a person is out of turns then they will 
 /// not be added back into the queue.
 /// </summary>
-public class TakingTurnsQueue {
-    private readonly PersonQueue _people = new();
+public class TakingTurnsQueue
+{
+   private readonly Queue<Person> _people = new Queue<Person>();
 
-    public int Length => _people.Length;
+    public int Length => _people.Count;
 
     /// <summary>
     /// Add new people to the queue with a name and number of turns
     /// </summary>
     /// <param name="name">Name of the person</param>
     /// <param name="turns">Number of turns remaining</param>
-    public void AddPerson(string name, int turns) {
+    public void AddPerson(string name, int turns)
+    {
         var person = new Person(name, turns);
         _people.Enqueue(person);
     }
@@ -29,21 +31,45 @@ public class TakingTurnsQueue {
     /// person has an infinite number of turns.  An error message is displayed 
     /// if the queue is empty.
     /// </summary>
-    public void GetNextPerson() {
-        if (_people.IsEmpty())
-            Console.WriteLine("No one in the queue.");
-        else {
-            Person person = _people.Dequeue();
-            if (person.Turns > 1) {
-                person.Turns -= 1;
-                _people.Enqueue(person);
-            }
-
-            Console.WriteLine(person.Name);
+    public void GetNextPerson()
+    {
+        if (_people.Count == 0)
+        {
+            Console.WriteLine("The queue is empty.");
+            return;
         }
+
+        var person = _people.Dequeue();
+
+        Console.WriteLine(person.Name);
+
+        if (person.Turns > 1)
+        {
+            person.Turns -= 1;
+            _people.Enqueue(person);
+        }
+        else if (person.Turns <= 0)
+        {
+            _people.Enqueue(person);
+        }
+
+        // Console.WriteLine(person.Name);
     }
 
-    public override string ToString() {
-        return _people.ToString();
+public override string ToString()
+{
+    return string.Join(", ", _people.Select(p => $"{p.Name}({p.Turns})"));
+}
+
+private class Person
+    {
+        public string Name { get; set; }
+        public int Turns { get; set; }
+
+        public Person(string name, int turns)
+        {
+            Name = name;
+            Turns = turns;
+        }
     }
 }

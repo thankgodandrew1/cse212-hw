@@ -47,3 +47,12 @@
         return stack.Pop();
     }
 }
+
+// Determine the result of the function if the following inputs were provided:
+// 5 3 7 + * AFTER ADDING TO THE STACK AND POPPING WHEN ENCOUNTER AN OPERATOR WE GET 50
+// 6 2 + 5 3 - / == 4
+// Consider possible values for the input parameter text that would result in the function doing the following:
+// Display "Invalid Case 1!" = IF STACK IS LESS THAN 2. LETS SAY WE HAVE ONLY ONE INPUT TO MAKE EXAMPLE '3 4 * +'
+// Display "Invalid Case 2!" == OCCURS WHEN WE TRY TO DIVIDE BY 0 FOR EXAMPLE 5 0 / INPUT WOULD RESUL TO INVALID CASE 2
+// Display "Invalid Case 3!" == OCCURS WHEN AN ITEM IN THE INPUT IS NEITHER A VSLID FLOAT OR OPERATOR FOR EXAMPLE '4 a +' OR '3 4 >' 
+// Display "Invalid Case 4!" == THIS OCCURS IF THE STACK DOES NOT CONTAIN ONLY ONE ITEM AFTER THE OPERATIONS ARE DONE. EXAMPLE '5 5' OR '5 3 2 +)

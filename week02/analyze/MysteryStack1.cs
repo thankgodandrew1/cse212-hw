@@ -11,3 +11,13 @@
         return result;
     }
 }
+
+// Determine the output of the function if the input text is equal to the following:
+// racecar
+// stressed
+// a nut for a jar of tuna 
+
+//Solution: 
+// racecar after pushing and popping out == racecar
+// stressed == desserts
+// a nut for a jar of tuna == anut fo raj a rof tun a
