@@ -1,7 +1,9 @@
 using System.Text.Json;
 
-public static class SetsAndMapsTester {
-    public static void Run() {
+public static class SetsAndMapsTester
+{
+    public static void Run()
+    {
         // Problem 1: Find Pairs with Sets
         Console.WriteLine("\n=========== Finding Pairs TESTS ===========");
         DisplayPairs(new[] { "am", "at", "ma", "if", "fi" });
@@ -107,10 +109,30 @@ public static class SetsAndMapsTester {
     /// that there were no duplicates) and therefore should not be displayed.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
-    private static void DisplayPairs(string[] words) {
-        // To display the pair correctly use something like:
-        // Console.WriteLine($"{word} & {pair}");
-        // Each pair of words should displayed on its own line.
+    private static void DisplayPairs(string[] words)
+    {
+        // created hashset to store the words
+        HashSet<string> wordSet = new HashSet<string>();
+
+        // run an iteration through each word in the list
+        foreach (string word in words)
+        {
+            // generate the reverse of the current word, type string.
+            string reverseWord = new string(new char[] { word[1], word[0] });
+
+            // this should check if the reverse word is in the set
+            if (wordSet.Contains(reverseWord))
+            {
+                // If found, print the pair and remove the reverse word from the set
+                Console.WriteLine($"{reverseWord} & {word}");
+                wordSet.Remove(reverseWord);
+            }
+            else
+            {
+                // else, add the current word to the set
+                wordSet.Add(word);
+            }
+        }
     }
 
     /// <summary>
@@ -127,11 +149,27 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 2 #
     /// #############
-    private static Dictionary<string, int> SummarizeDegrees(string filename) {
+    private static Dictionary<string, int> SummarizeDegrees(string filename)
+    {
         var degrees = new Dictionary<string, int>();
-        foreach (var line in File.ReadLines(filename)) {
+        foreach (var line in File.ReadLines(filename))
+        {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            // this shouldget the degree from the 4th column (index 3 in our case)
+            var degree = fields[3].Trim();
+
+            // checks if d degree is already in the dictionary, increment its count
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree]++;
+            }
+            else
+            {
+                // else, add the degree to the dictionary with a count of 1
+                degrees[degree] = 1;
+            }
+            // return degrees;
         }
 
         return degrees;
@@ -156,15 +194,57 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 3 #
     /// #############
-    private static bool IsAnagram(string word1, string word2) {
+    private static bool IsAnagram(string word1, string word2)
+    {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        // ignore spacees by removing them and convert the words to lowercase to curtail cases conflict
+        word1 = new string(word1.Where(char.IsLetter).ToArray()).ToLower();
+        word2 = new string(word2.Where(char.IsLetter).ToArray()).ToLower();
+
+        // checks if lengths of the word are different, if they r they can't be anagrams
+        if (word1.Length != word2.Length) return false;
+
+        // Create dictionaries to count how many times character appears in a word
+        var count1 = new Dictionary<char, int>();
+        var count2 = new Dictionary<char, int>();
+
+        // Count character occurances for word1
+        foreach (char c in word1)
+        {
+            if (count1.ContainsKey(c))
+            {
+                count1[c]++;
+            }
+            else
+            {
+                count1[c] = 1;
+            }
+        }
+
+        //count character frequencies for word2
+        foreach (char c in word2)
+        {
+            if (count2.ContainsKey(c))
+            {
+                count2[c]++;
+            }
+            else
+            {
+                count2[c] = 1;
+            }
+        }
+
+        // compare both dictiona.
+        return count1.Count == count2.Count && !count1.Except(count2).Any();
+
+        // return false;
     }
 
     /// <summary>
     /// Sets up the maze dictionary for problem 4
     /// </summary>
-    private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap() {
+    private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap()
+    {
         Dictionary<ValueTuple<int, int>, bool[]> map = new() {
             { (1, 1), new[] { false, true, false, true } },
             { (1, 2), new[] { false, true, true, false } },
@@ -220,7 +300,8 @@ public static class SetsAndMapsTester {
     /// https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
     /// 
     /// </summary>
-    private static void EarthquakeDailySummary() {
+    private static void EarthquakeDailySummary()
+    {
         const string uri = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
         using var client = new HttpClient();
         using var getRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
@@ -235,5 +316,11 @@ public static class SetsAndMapsTester {
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to print out each place a earthquake has happened today and its magitude.
+        foreach (var feature in featureCollection.Features)
+        {
+            var properties = feature.Properties;
+            // string formattedMagnitude = properties.Mag.ToString("0.00");
+            Console.WriteLine($"Place: {properties.Place}, Mag: {properties.Mag}");
+        }
     }
 }
