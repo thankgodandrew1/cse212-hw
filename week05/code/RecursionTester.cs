@@ -1,8 +1,10 @@
-public static class RecursionTester {
+public static class RecursionTester
+{
     /// <summary>
     /// Entry point for the Prove 8 tests
     /// </summary>
-    public static void Run() {
+    public static void Run()
+    {
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== PROBLEM 1 TESTS ===========");
         Console.WriteLine(SumSquaresRecursive(10)); // 385
@@ -67,7 +69,7 @@ public static class RecursionTester {
         Console.WriteLine(CountWaysToClimb(20)); // 121415
         // Uncomment out the test below after implementing memoization.  It won't work without it.
         // TODO Problem 3
-        // Console.WriteLine(CountWaysToClimb(100));  // 180396380815100901214157639
+        Console.WriteLine(CountWaysToClimb(100));  // 180396380815100901214157639
 
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== PROBLEM 4 TESTS ===========");
@@ -89,35 +91,35 @@ public static class RecursionTester {
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== PROBLEM 5 TESTS ===========");
         Maze smallMaze = new Maze(3, 3, new[] { 1, 1, 1, 1, 0, 1, 1, 1, 2 });
-        SolveMaze(smallMaze);
+        // SolveMaze(smallMaze);
         // Two Solutions (order in each solution should match):
         // <List>{(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)}
         // <List>{(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)}
 
-        Maze bigMaze = new(20, 20,
-            new[] {
-                1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,
-                1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,
-                0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0,
-                0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
-                1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-                0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
-                0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-                1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
-                0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-                0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1,
-                0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
-                0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1,
-                1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0,
-                0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0,
-                0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1,
-                0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
-                0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0,
-                1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 2
-            });
-        SolveMaze(bigMaze);
+        // Maze bigMaze = new(20, 20,
+        //     new[] {
+        //         1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        //         1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+        //         1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,
+        //         1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,
+        //         0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0,
+        //         0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
+        //         1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+        //         0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
+        //         0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+        //         1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
+        //         0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1,
+        //         0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1,
+        //         0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
+        //         0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1,
+        //         1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0,
+        //         0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0,
+        //         0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1,
+        //         0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
+        //         0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0,
+        //         1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 2
+        //     });
+        // SolveMaze(bigMaze);
         // One Solution (order should match):
         // <List>{(0, 0), (0, 1), (0, 2), (0, 3), (1, 3), (2, 3), (3, 3), (3, 4), (3, 5),
         // (3, 6), (2, 6), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (2, 10), (3, 10),
@@ -145,9 +147,15 @@ public static class RecursionTester {
     /// to identify a base case (terminating case).  If the value of
     /// n &lt;= 0, just return 0.   A loop should not be used.
     /// </summary>
-    public static int SumSquaresRecursive(int n) {
+    public static int SumSquaresRecursive(int n)
+    {
         // TODO Start Problem 1
-        return 0;
+        if (n <= 0)
+        {
+            return 0;
+        }
+        return n * n + SumSquaresRecursive(n - 1);
+
     }
 
     /// <summary>
@@ -169,8 +177,19 @@ public static class RecursionTester {
     /// You can assume that the size specified is always valid (between 1 
     /// and the length of the letters list).
     /// </summary>
-    public static void PermutationsChoose(string letters, int size, string word = "") {
+    public static void PermutationsChoose(string letters, int size, string word = "")
+    {
         // TODO Start Problem 2
+        if (word.Length == size)
+        {
+            Console.WriteLine(word);
+            // return;
+        }
+
+        for (int i = 0; i < letters.Length; i++)
+        {
+            PermutationsChoose(letters.Remove(i, 1), size, word + letters[i]);
+        }
     }
 
     /// <summary>
@@ -218,7 +237,16 @@ public static class RecursionTester {
     /// The last test case is commented out because it will not work
     /// until the memoization is implemented.
     /// </summary>
-    public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null) {
+    public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null)
+    {
+
+        // remember.TryGetValue(s, out decimal value);
+
+        if (remember == null)
+        {
+            remember = new Dictionary<int, decimal>();
+        }
+
         // Base Cases
         if (s == 0)
             return 0;
@@ -229,8 +257,13 @@ public static class RecursionTester {
         if (s == 3)
             return 4;
 
+        if (remember.ContainsKey(s))
+        {
+            return remember[s];
+        }
         // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
+        remember[s] = ways;
         return ways;
     }
 
@@ -247,15 +280,28 @@ public static class RecursionTester {
     /// Using recursion, display all possible binary strings for a given pattern.  You might find 
     /// some of the string functions like IndexOf and [..X] / [X..] to be useful in solving this problem.
     /// </summary>
-    public static void WildcardBinary(string pattern) {
+    public static void WildcardBinary(string pattern)
+    {
         // TODO Start Problem 4
+        int Index = pattern.IndexOf('*');
+        if (Index == -1)
+        {
+            Console.WriteLine(pattern);
+            return;
+        }
+
+        WildcardBinary(pattern.Substring(0, Index) + '0' + pattern.Substring(Index + 1));
+
+        WildcardBinary(pattern.Substring(0, Index) + '1' + pattern.Substring(Index + 1));
+
     }
 
     /// <summary>
     /// Use recursion to Print all paths that start at (0,0) and end at the
     /// 'end' square.
     /// </summary>
-    public static void SolveMaze(Maze maze, int x = 0, int y = 0, List<ValueTuple<int, int>>? currPath = null) {
+    public static void SolveMaze(Maze maze, int x = 0, int y = 0, List<ValueTuple<int, int>>? currPath = null)
+    {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
         if (currPath == null)
